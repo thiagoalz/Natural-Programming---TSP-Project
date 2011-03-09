@@ -1,0 +1,118 @@
+
+ACO algorithms for the TSP, v1.0
+
+Parameter-settings: 
+
+max-tries 10
+max-tours 100
+optimum 1
+time 10.000000
+num-ants 25
+num-neigh 20
+alpha 1.000000
+beta 2.000000
+rho 0.500000
+q_0 0.000000
+branch-up 1.000010
+ls_flag 3
+nn_ls 20
+dlb_flag 1
+as_flag 0
+eas_flag 0
+ras_flag 0
+mmas_flag 1
+bwas_flag 0
+acs_flag 0
+
+begin problem ../All TSP/pr264.tsp
+seed 1225635256
+begin try 0 
+best 49877	 iteration 1	 tours 27	 time 0.030
+best 49457	 iteration 4	 tours 102	 time 0.080
+best 49336	 iteration 7	 tours 177	 time 0.170
+best 49180	 iteration 8	 tours 202	 time 0.180
+best 49135	 iteration 9	 tours 227	 time 0.190
+end try 0
+
+seed 423170060
+begin try 1 
+best 49778	 iteration 1	 tours 27	 time 0.020
+best 49776	 iteration 4	 tours 102	 time 0.060
+best 49625	 iteration 5	 tours 127	 time 0.080
+best 49319	 iteration 6	 tours 152	 time 0.090
+best 49135	 iteration 8	 tours 202	 time 0.110
+end try 1
+
+seed 1526993885
+begin try 2 
+best 50201	 iteration 1	 tours 27	 time 0.030
+best 49670	 iteration 2	 tours 52	 time 0.040
+best 49336	 iteration 6	 tours 152	 time 0.090
+best 49248	 iteration 9	 tours 227	 time 0.130
+best 49135	 iteration 10	 tours 252	 time 0.140
+end try 2
+
+seed 1616230752
+begin try 3 
+best 50141	 iteration 1	 tours 27	 time 0.030
+best 50126	 iteration 2	 tours 52	 time 0.040
+best 49310	 iteration 3	 tours 77	 time 0.050
+best 49269	 iteration 5	 tours 127	 time 0.080
+best 49180	 iteration 7	 tours 177	 time 0.110
+best 49151	 iteration 8	 tours 202	 time 0.120
+best 49135	 iteration 9	 tours 227	 time 0.130
+end try 3
+
+seed 1760138327
+begin try 4 
+best 50407	 iteration 1	 tours 27	 time 0.020
+best 50039	 iteration 2	 tours 52	 time 0.030
+best 49607	 iteration 4	 tours 102	 time 0.060
+best 49235	 iteration 5	 tours 127	 time 0.080
+best 49203	 iteration 7	 tours 177	 time 0.100
+best 49135	 iteration 8	 tours 202	 time 0.110
+end try 4
+
+seed 1992242786
+begin try 5 
+best 50750	 iteration 1	 tours 27	 time 0.020
+best 50181	 iteration 2	 tours 52	 time 0.030
+best 49263	 iteration 3	 tours 77	 time 0.050
+best 49151	 iteration 9	 tours 227	 time 0.120
+best 49135	 iteration 11	 tours 277	 time 0.150
+end try 5
+
+seed 1051765643
+begin try 6 
+best 50044	 iteration 1	 tours 27	 time 0.020
+best 49203	 iteration 2	 tours 52	 time 0.040
+best 49135	 iteration 8	 tours 202	 time 0.120
+end try 6
+
+seed 1330342602
+begin try 7 
+best 50953	 iteration 1	 tours 27	 time 0.020
+best 50255	 iteration 2	 tours 52	 time 0.040
+best 50139	 iteration 3	 tours 77	 time 0.070
+best 49635	 iteration 4	 tours 102	 time 0.090
+best 49135	 iteration 5	 tours 127	 time 0.120
+end try 7
+
+seed 405990572
+begin try 8 
+best 49544	 iteration 1	 tours 27	 time 0.020
+best 49336	 iteration 2	 tours 52	 time 0.040
+best 49248	 iteration 5	 tours 127	 time 0.080
+best 49135	 iteration 7	 tours 177	 time 0.110
+end try 8
+
+seed 401592642
+begin try 9 
+best 49774	 iteration 1	 tours 27	 time 0.020
+best 49397	 iteration 5	 tours 127	 time 0.080
+best 49365	 iteration 6	 tours 152	 time 0.090
+best 49219	 iteration 7	 tours 177	 time 0.100
+best 49135	 iteration 8	 tours 202	 time 0.110
+end try 9
+
+end problem pr264

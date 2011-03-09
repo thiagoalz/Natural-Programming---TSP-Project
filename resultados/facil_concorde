@@ -1,0 +1,54 @@
+/ud/neos5/bin/concorde.cplex -s 99 -f sample.tsp
+Host: thales  Current process id: 20106
+Using random seed 99
+Problem Name: ulysses22.tsp
+Problem Type: TSP
+Odyssey of Ulysses (Groetschel/Padberg)
+Number of Nodes: 22
+Rounded Euclidean Norm (CC_EUCLIDEAN)
+Set initial upperbound to 72 (from tour)
+ LP Value  1: 62.500000  (0.00 seconds)
+ LP Value  2: 72.000000  (0.01 seconds)
+New lower bound: 72.000000
+Final lower bound 72.000000, upper bound 72.000000
+Exact lower bound: 72.000000
+DIFF: 0.000000
+Final LP has 34 rows, 59 columns, 218 nonzeros
+Optimal Solution: 72.00
+Number of bbnodes: 1
+Total Running Time: 0.07 (seconds)
+
+
+***  ***
+
+
+
+*** You chose the Concorde(CPLEX) solver ***
+
+
+
+*** Optimal tour as edge file (cities numbered 0..n-1) ***
+
+22 22
+0 2 5
+2 1 1
+1 16 2
+16 17 2
+17 3 0
+3 21 1
+21 7 2
+7 14 6
+14 4 4
+4 10 16
+10 8 15
+8 9 4
+9 20 1
+20 19 0
+19 18 1
+18 6 2
+6 5 1
+5 13 3
+13 11 1
+11 12 0
+12 15 4
+15 0 1

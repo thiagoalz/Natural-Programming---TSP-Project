@@ -1,0 +1,102 @@
+*************************************************************
+
+   NEOS Server Version 5.0
+   Job#     : 1735148
+   Password : jyFUfhax
+   Solver   : co:concorde:TSP
+   Start    : 2008-11-01 14:12:16
+   End      : 2008-11-01 14:12:24
+   Host     : thales.la.asu.edu
+
+   Disclaimer:
+
+   This information is provided without any express or
+   implied warranty. In particular, there is no warranty
+   of any kind concerning the fitness of this
+   information  for any particular purpose.
+*************************************************************
+/ud/neos5/bin/concorde.cplex -s 99 -f sample.tsp
+Host: thales  Current process id: 10181
+Using random seed 99
+Problem Name: eil51
+51-city problem (Christofides/Eilon)
+Problem Type: TSP
+Number of Nodes: 51
+Rounded Euclidean Norm (CC_EUCLIDEAN)
+Set initial upperbound to 426 (from tour)
+  LP Value  1: 418.500000  (0.00 seconds)
+  LP Value  2: 424.833333  (0.02 seconds)
+  LP Value  3: 426.000000  (0.04 seconds)
+New lower bound: 426.000000
+Final lower bound 426.000000, upper bound 426.000000
+Exact lower bound: 426.000000
+DIFF: 0.000000
+Final LP has 77 rows, 99 columns, 463 nonzeros
+Optimal Solution: 426.00
+Number of bbnodes: 1
+Total Running Time: 0.09 (seconds)
+
+
+***  ***
+
+
+
+*** You chose the Concorde(CPLEX) solver ***
+
+
+
+*** Optimal tour as edge file (cities numbered 0..n-1) ***
+
+51 51
+0 31 6
+31 10 6
+10 37 7
+37 4 7
+4 36 11
+36 16 5
+16 3 8
+3 17 8
+17 46 8
+46 11 6
+11 45 7
+45 50 2
+50 26 8
+26 5 9
+5 47 9
+47 22 9
+22 6 6
+6 42 12
+42 23 12
+23 13 11
+13 24 6
+24 12 13
+12 40 9
+40 18 5
+18 39 11
+39 41 16
+41 43 10
+43 14 6
+14 44 7
+44 32 7
+32 38 14
+38 9 10
+9 48 8
+48 8 6
+8 29 8
+29 33 7
+33 49 6
+49 15 6
+15 20 10
+20 28 7
+28 1 9
+1 19 12
+19 34 7
+34 35 6
+35 2 12
+2 27 9
+27 30 6
+30 25 10
+25 7 7
+7 21 12
+21 0 7
+

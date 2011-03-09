@@ -1,0 +1,229 @@
+// Ag = n. de antígenos
+// N = núemro de dados de entrada (antígenos)
+// dim = dimensão dos dados
+// Ab = anticorpos
+// r = raio mínimo
+// E = raio que define a vizinhança para o cálculo da densidade local
+// R = vetor com raio de cada anticorpo
+// mi = taxa de mutação
+// decaimento = constante de decaimento da taxa de mutação
+
+//function[]=aria(r, E, mi, decaimento)
+ 
+xmin=-10;
+xmax=10;
+ymin=-10;
+ymax=10;
+x1=1+rand(3,1)*(10-1);
+y1=1+rand(3,1)*(10-1);
+x2=-3+rand(3,1)*(-10-(-3));
+y2=3+rand(3,1)*(10-3);
+x3=2+rand(3,1)*(10-2);
+y3=-2+rand(3,1)*(-10-(-2));
+x4=-3+rand(1,1)*(-10-(-3));
+y4=-3+rand(1,1)*(-10-(-3));
+Ag=[x1 y1; x2 y2; x3 y3; x4 y4];
+Px=-10+rand(4,1)*(4-(-10));
+Py=-10+rand(4,1)*(4-(-10));
+Ab=[Px Py] //população de anticorpos
+
+R = rand(length(Ab),1);
+mi=1;
+r=1;
+E=10;
+decaimento=0.95;
+it_max = 10;
+it = 1;
+for it=1:it_max
+    N = length(Ag);
+    M = length(Ab);
+    Ablinha(N,2)=zeros;
+    J=(1:M);
+    distancia(1:N)=zeros;
+   
+//passos 2.1.1 e 2.1.2 seleciona o anticorpo que tem menor distancia e muda com taxa mi na
+//direção Ag
+    for i = 1:N
+        aff=affinity(Ag(i,:),Ab); //avalia a distancia entre cada antígeno para os anticorpos
+        [val, pos]=min(aff); //escolhe a menor distancia entre o antígeno e o anticorpo
+        J(pos)=0;
+        distancia(i)=val;
+        Ablinha(i,:) = Ag(i,:) + mi*rand*(Ag(i,:) - Ab(pos,:));
+    end
+J
+    Ab
+ Ablinha
+ 
+//2.2 sumprime os Ab que não foram estimulados
+    Ab(find(J~=0),:)=[];
+    //Ablinha(find(J~=0),:)=[];
+    distancia(find(J~=0))=[];
+    Ab
+    distancia
+   
+//2.3 clona os Ab's com distancia a Ag menor que r
+    clones=[];
+    for i=1:length(distancia)
+        if distancia(i) > r
+           clones=Ab(i,:)
+           Ab=[Ablinha; clones]
+        end
+    end
+   
+ Ag
+ //Ab
+//2.4 calcula densidade local para cada Ab
+    densidade(length(Ab),1)=zeros;
+    somadensidade=0;
+    den(length(Ab),1)=zeros;
+    for i=1:length(Ab)
+        aff=affinity(Ab(i,:), Ag);
+        aff=aff';
+        for j=1:length(aff)
+            if aff(j) < E
+                densidade(j)=1;
+            else
+                densidade(j)=0;
+            end
+        end
+        den(i)=sum(densidade);
+        somadensidade = somadensidade + sum(den);
+    end
+            
+//2.5 Atualiza R
+    for i=1:length(Ab)
+        if den ~= 0
+            R(i)=r*(somadensidade/den(i))^(1/2);
+        else
+            R(i)=0;
+        end
+    end
+    R    
+    Ab
+
+//2.6 Supressao da rede
+    indice=[];
+    J=[1:size(Ab,1)];
+    for i=1:(length(J)-1)           
+        if J(i) ~= 0
+            aff=affinity(Ab(i,:),Ab);
+            //aff
+            for k=1:length(J)
+                if k>i & J(k)~=0 & aff(J(k))~=0
+                    if aff(J(k))<R(i) | aff(J(k))<R(J(k))
+                        dif = R(i) - R(J(k))
+                        if dif < 0
+                            J(k)=0
+                        else
+                            J(i)=0
+                        end
+                    end
+                end
+            end
+        end
+    end
+    Ab(find(J==0),:)=[];
+    R(find(J==0))=[];
+        
+    Ab
+    R
+     
+//2.7 Atualiza E
+    E=mean(R);
+   
+//2.8 reduz taxa de mutação
+    mi=mi*decaimento
+end
+Ab
+Ag
+R
+plot_ARIA(Ab,Ag,R)
+       
+      
+Programa princial acaba aqui
+ 
+Programa 2 que calcula a afinidadde
+ 
+function [aff] = affinity(v,V)
+aff=[zeros];
+for i=1:size(V,1)
+        aff(i)=dist(v,V(i,:)');
+end
+//aff=sparse(aff);
+Programa 3 que faz o gráfico
+ 
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//       Rotina que plota os dados e os protótipos com seus raios. Usa a
+// função 'circle'.
+//
+// Entradas: Ab: matriz com os protótipos. Cada linha é um protótipo.
+//           Ag: metriz com os dados de entrada. Cada linha é um dado.
+//           R: vetor com o raio de cada protótipo
+//           styleCenter: estilo do marcador do centro do prototipo. Ex:'r.'
+//           styleRadius: estilo do raio do protptipo. Ex:'r-'
+//           styleData: estilo do marcador dos dados.
+//
+//       Entradas obrigatórias: Ab, Ag, R.
+//
+//   06/10/2008
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function [] = plot_ARIA(Ab,Ag,R,styleCenter,styleRadius,styleData)
+if nargin==3
+    styleCenter = 'r.';
+    styleRadius = 'r-';
+    styleData   = 'bx';
+elseif nargin<6
+    error('Not enough input arguments.');
+end
+figure(1)
+hold on;
+a = plot(Ag(:,1), Ag(:,2),styleData);
+b = plot(Ab(:,1), Ab(:,2),styleCenter);
+circle(Ab,R);
+// legend([a b],'antígenos','anticorpos')
+// axis square;
+// axis([0 1 0 1]);
+// hold off
+ 
+function H=circle(Ab,R)
+//---------------------------------------------------------------------------------------------
+// H=CIRCLE(CENTER,RADIUS,NOP,STYLE)
+// This routine draws a circle with center defined as
+// a vector CENTER, radius as a scaler RADIS. NOP is
+// the number of points on the circle. As to STYLE,
+// use it the same way as you use the rountine PLOT.
+// Since the handle of the object is returned, you
+// use routine SET to get the best result.
+//
+//   Usage Examples,
+//
+//   circle([1,3],3,1000,':');
+//   circle([2,4],2,1000,'--');
+//
+//   Zhenhai Wang <zhenhai@ieee.org>
+//   Version 1.00
+//   December, 2002
+//---------------------------------------------------------------------------------------------
+if (nargin <2),
+ error('Please see help for INPUT DATA.');
+elseif (nargin==2)
+    style='b-';
+end;
+NOP=1000;
+center=Ab;
+radius=R;
+for i=1:length(Ab);
+    center=[Ab(i,1) Ab(i,2)];
+    radius=R(i);
+    THETA=linspace(0,2*pi,NOP);
+    RHO=ones(1,NOP)*radius;
+    [X,Y] = pol2cart(THETA,RHO);
+    X=X+center(1);
+    Y=Y+center(2);
+    H=plot(X,Y,style);
+//axis square;
+// axis([0 1 0 1]);
+end
